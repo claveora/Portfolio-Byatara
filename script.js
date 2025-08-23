@@ -1,125 +1,173 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- 1. LOADING SCREEN ---
-    const loadingScreen = document.getElementById('loading-screen');
-    window.addEventListener('load', () => {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    });
-
-    // --- 2. DARK MODE ---
-    const themeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        themeToggle.checked = true;
-    }
-    themeToggle.addEventListener('change', () => {
-        body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-    });
-
-    // --- 3. TYPING EFFECT ---
-    const typingElement = document.querySelector('.typing-effect');
-    const words = ["in Progress", "and Designer", "and Programmer"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    function type() {
-        if (charIndex < words[wordIndex].length) {
-            typingElement.textContent += words[wordIndex].charAt(charIndex);
-            charIndex++;
-            setTimeout(type, 100);
-        } else {
-            setTimeout(erase, 2000);
-        }
-    }
-    function erase() {
-        if (charIndex > 0) {
-            typingElement.textContent = words[wordIndex].substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(erase, 50);
-        } else {
-            wordIndex = (wordIndex + 1) % words.length;
-            setTimeout(type, 500);
-        }
-    }
-    type();
-
-    // --- 4. SMOOTH SCROLL ---
-    document.querySelectorAll('.main-nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // --- 5. SCROLL ANIMATIONS ---
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-    revealElements.forEach(el => observer.observe(el));
-
-    // --- 6. PARALLAX HERO ---
-    const heroBg = document.querySelector('.hero-bg-parallax');
-    window.addEventListener('scroll', () => {
-        heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-    });
-
-    // --- 7. PROJECT MODAL ---
-    const modal = document.getElementById('project-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const closeModal = document.querySelector('.close-modal');
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', () => {
-            modalImg.src = card.dataset.image;
-            modalTitle.textContent = card.dataset.title;
-            modalDescription.textContent = card.dataset.description;
-            modal.style.display = 'block';
-        });
-    });
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
-
-    // --- 8. CONTACT FORM VALIDATION ---
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.querySelector('.form-message');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = contactForm.name.value.trim();
-        const email = contactForm.email.value.trim();
-        const message = contactForm.message.value.trim();
-        if (name === '' || email === '' || message === '') {
-            formMessage.textContent = 'Semua kolom harus diisi.';
-            formMessage.style.color = 'var(--secondary-color)';
-        } else {
-            formMessage.textContent = 'Pesan terkirim (simulasi).';
-            formMessage.style.color = 'var(--primary-color)';
-            contactForm.reset();
-            setTimeout(() => formMessage.textContent = '', 3000);
-        }
-    });
-
-    // --- 9. SCROLL TO TOP BUTTON ---
-    const scrollToTopBtn = document.getElementById('scroll-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollToTopBtn.style.display = 'flex';
-        } else {
-            scrollToTopBtn.style.display = 'none';
-        }
-    });
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+// ===========================
+// Loading Screen
+// ===========================
+window.addEventListener("load", () => {
+  const loadingScreen = document.getElementById("loading-screen");
+  setTimeout(() => {
+    loadingScreen.style.opacity = "0";
+    setTimeout(() => (loadingScreen.style.display = "none"), 500);
+  }, 500);
 });
+
+// ===========================
+// Reveal on Scroll
+// ===========================
+function revealOnScroll() {
+  document.querySelectorAll(".reveal").forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 50) el.classList.add("visible");
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+// ===========================
+// Hamburger Menu
+// ===========================
+const hamburger = document.getElementById("hamburger");
+const mainNav = document.getElementById("main-nav");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  mainNav.classList.toggle("active");
+  document.body.classList.toggle("nav-open");
+});
+
+document.querySelectorAll(".main-nav a").forEach(link =>
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    mainNav.classList.remove("active");
+    document.body.classList.remove("nav-open");
+  })
+);
+
+// ===========================
+// Scroll To Top
+// ===========================
+const scrollBtn = document.getElementById("scroll-to-top");
+window.addEventListener("scroll", () => {
+  scrollBtn.style.display = window.scrollY > 300 ? "flex" : "none";
+});
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===========================
+// Typing Effect
+// ===========================
+const typingElement = document.querySelector(".typing-effect");
+const typingWords = ["In Progress", "and Designer", "and Programmer"];
+let wordIndex = 0, charIndex = 0, isDeleting = false;
+
+function typeEffect() {
+  if (!typingElement) return;
+
+  const currentWord = typingWords[wordIndex];
+  const currentText = currentWord.substring(0, charIndex);
+
+  typingElement.textContent = currentText;
+
+  if (!isDeleting && charIndex < currentWord.length) {
+    charIndex++;
+    setTimeout(typeEffect, 100);
+  } else if (isDeleting && charIndex > 0) {
+    charIndex--;
+    setTimeout(typeEffect, 70);
+  } else {
+    if (!isDeleting) {
+      isDeleting = true;
+      setTimeout(typeEffect, 1000);
+    } else {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % typingWords.length;
+      setTimeout(typeEffect, 300);
+    }
+  }
+}
+window.addEventListener("load", typeEffect);
+
+// ===========================
+// Modal Project
+// ===========================
+const modal = document.getElementById("project-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalDesc = document.getElementById("modal-description");
+const modalClose = document.querySelector(".close-modal");
+const modalBtn = document.querySelector(".modal-header .btn-jln");
+let currentProjectLink = "#";
+
+document.querySelectorAll(".project-card").forEach(card => {
+  // Klik card → buka modal
+  card.addEventListener("click", e => {
+    if (e.target.classList.contains("btn-jln")) return; // kalau tombol jalankan diklik, jangan buka modal
+
+    modal.style.display = "block";
+    modalTitle.textContent = card.dataset.title;
+    modalDesc.textContent = card.dataset.description;
+    modalImg.src = card.dataset.image;
+    currentProjectLink = card.dataset.link;
+  });
+
+  // Klik tombol "Jalankan" → langsung buka link proyek
+  const runBtn = card.querySelector(".btn-jln");
+  if (runBtn) {
+    runBtn.addEventListener("click", e => {
+      e.stopPropagation(); // biar nggak ikut buka modal
+      const link = card.dataset.link;
+      if (link) window.open(link, "_blank");
+    });
+  }
+});
+
+// Tombol Jalankan dalam modal
+modalBtn.addEventListener("click", () => {
+  if (currentProjectLink) window.open(currentProjectLink, "_blank");
+});
+
+// Tutup modal
+modalClose.addEventListener("click", () => (modal.style.display = "none"));
+window.addEventListener("click", e => {
+  if (e.target === modal) modal.style.display = "none";
+});
+
+// ===========================
+// Dark Mode Toggle
+// ===========================
+const darkToggle = document.getElementById("dark-mode-toggle");
+if (localStorage.getItem("darkMode") === "enabled") {
+  document.body.classList.add("dark-mode");
+  darkToggle.checked = true;
+}
+darkToggle.addEventListener("change", () => {
+  if (darkToggle.checked) {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("darkMode", "enabled");
+  } else {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("darkMode", "disabled");
+  }
+});
+
+// ===========================
+// Navigation Scrollspy
+// ===========================
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".main-nav a");
+
+function scrollSpy() {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    if (scrollY >= sectionTop) current = section.id;
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll", scrollSpy);
