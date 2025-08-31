@@ -25,22 +25,18 @@ revealOnScroll();
 // ===========================
 // Hamburger Menu
 // ===========================
-const hamburger = document.getElementById("hamburger");
-const mainNav = document.getElementById("main-nav");
+const hamburgerIcon = document.getElementById("hamburger");
+const dropdown = document.getElementById("dropdown");
+const cancelIcon = document.getElementById("cancel");
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  mainNav.classList.toggle("active");
-  document.body.classList.toggle("nav-open");
+hamburgerIcon.addEventListener("click", () => {
+  dropdown.style.transform = "translateY(0)";
 });
 
-document.querySelectorAll(".main-nav a").forEach(link =>
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    mainNav.classList.remove("active");
-    document.body.classList.remove("nav-open");
-  })
-);
+cancelIcon.addEventListener("click", () => {
+  dropdown.style.transform = "translateY(-500px)";
+});
+
 
 // ===========================
 // Scroll To Top
