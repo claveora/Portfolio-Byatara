@@ -98,21 +98,45 @@ body {
 }
 .main-nav a:hover { color: var(--primary-color); }
 
-/* Hamburger (default hidden) */
-.hamburger {
-  display: none;
-  cursor: pointer;
+/* Dropdown menu */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg-color);
+  text-align: center;
+  transform: translateY(-500px);
+  transition: transform 0.4s ease-in-out;
+  z-index: 999;
+}
+
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+  display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 1rem;
 }
-.hamburger span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background: var(--text-color);
-  border-radius: 2px;
-  transition: all 0.4s ease;
+
+.dropdown a {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: 600;
 }
+
+.dropdown a:hover {
+  color: var(--primary-color);
+}
+
+.dropdown .cancel {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: var(--secondary-color);
+} 
 
 /* ===========================
    Hero
@@ -136,10 +160,11 @@ body {
   opacity: 0.1;
 }
 .avatar {
-  width: 250px;
-  height: 250px;
+  width: 270px;
+  height: 270px;
   border-radius: 50%;
   border: 5px solid var(--primary-color);
+  margin-top: 2rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 10px 30px var(--shadow-color);
 }
@@ -513,40 +538,33 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
    Responsive + Hamburger
 =========================== */
 @media (max-width: 768px) {
-  /* Main nav jadi overlay */
   .main-nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 70%;
+    position: absolute;
+    top: 100%;          /* muncul di bawah header */
+    left: 0;
+    width: 100%;
     background: var(--card-bg-color);
-    box-shadow: -5px 0 15px var(--shadow-color);
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    transition: right 0.4s ease-in-out;
-    z-index: 999;
+    gap: 1.5rem;
+    overflow: hidden;
+    max-height: 0;      /* default tertutup */
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
   }
+
   .main-nav.active {
-    right: 0;
+    max-height: 500px;  /* cukup besar untuk isi menu */
+    opacity: 1;
   }
 
   .main-nav a {
-    font-size: 1.5rem;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    transition: color 0.3s;
   }
-  .main-nav.active a {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .main-nav.active a:nth-child(1) { transition-delay: 0.1s; }
-  .main-nav.active a:nth-child(2) { transition-delay: 0.2s; }
-  .main-nav.active a:nth-child(3) { transition-delay: 0.3s; }
-  .main-nav.active a:nth-child(4) { transition-delay: 0.4s; }
 
   .hamburger {
     display: flex;
@@ -572,12 +590,12 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
     transform: rotate(-45deg) translate(6px, -6px);
   }
 
-  /* Body lock scroll */
+  /* Lock scroll optional */
   body.nav-open {
     overflow: hidden;
   }
 
-  /* Footer stack */
+  /* Footer stack tetap */
   .site-footer .container {
     flex-direction: column;
     gap: 1rem;
