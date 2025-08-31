@@ -34,21 +34,20 @@
       <div class="logo">Byatara</div>
 
       <!-- Hamburger -->
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </div>
+      <i class="fa-solid fa-bars hamburger" id="hamburger"></i>
 
-      <!-- Navigation -->
-      <nav class="main-nav" id="main-nav">
-        <ul>
-          <li><a href="#about">Tentang</a></li>
-          <li><a href="#projects">Proyek</a></li>
-          <li><a href="#pendidikan">Pendidikan</a></li>
-          <li><a href="#skills">Skill</a></li>
-          <li><a href="#contact">Kontak</a></li>
-        </ul>
-      </nav>
+<!-- Dropdown Nav -->
+    <div class="dropdown" id="dropdown">
+      <ul>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#projects">Proyek</a></li>
+        <li><a href="#pendidikan">Pendidikan</a></li>
+        <li><a href="#skills">Skill</a></li>
+        <li><a href="#contact">Kontak</a></li>
+        <i class="fa-solid fa-xmark cancel" id="cancel"></i>
+      </ul>
     </div>
+
   </header>
 
   <main>
@@ -100,6 +99,18 @@
             <img src="tik.png" alt="Proyek Tic Tac Toe" />
             <div class="project-info">
               <h3>Tic Tac Toe</h3>
+              <button class="btn-jln">Jalankan</button>
+            </div>
+          </div>
+          
+          <div class="project-card"
+               data-title="3D Showcase"
+               data-description="Sebuah 3D Showcase dengan penggunaan gabungan antara HTML, CSS serta JavaScript khususnya THREE JS."
+               data-image="3d.png"
+               data-link="https://claveora.github.io/3D-Product-Showcase/">
+            <img src="3d.png" alt="3D Showcase" />
+            <div class="project-info">
+              <h3>3D-Product-Showcase</h3>
               <button class="btn-jln">Jalankan</button>
             </div>
           </div>
@@ -160,16 +171,26 @@
       <div class="container reveal">
         <h2 class="section-title">Skill Saya</h2>
         <div class="skills-list">
+          <div class="skill-item"><i class="devicon-visualstudio-plain"></i></i> Visual Studio Code</div>
           <div class="skill-item"><i class="fab fa-html5"></i> HTML</div>
           <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS</div>
           <div class="skill-item"><i class="fab fa-js-square"></i> JavaScript</div>
           <div class="skill-item"><i class="fab fa-java"></i> Java</div>
-          <div class="skill-item"><i class="fab fa-python"></i>Python</div>
+          <div class="skill-item"><i class="fab fa-python"></i> Python</div>
           <div class="skill-item"><i class="fas fa-palette"></i> UI/UX Design</div>
+          <div class="skill-item"><i class="devicon-canva-original"></i></i> Canva</div>
           <div class="skill-item"><i class="fab fa-figma"></i> Figma</div>
-          <div class="skill-item"><i class="devicon-cplusplus-plain colored"></i>C++</div>
-          <div class="skill-item"><i class="devicon-php-plain colored"></i>PHP</div>
+          <div class="skill-item"><i class="devicon-cplusplus-plain colored"></i> C++</div>
+          <div class="skill-item"><i class="devicon-php-plain colored"></i> PHP</div>
           <div class="skill-item"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</div>
+          <div class="skill-item"><i class="fas fa-mobile-alt"></i> Mobile Development</div>
+          <div class="skill-item"><i class="devicon-androidstudio-plain colored"></i> Android Studio</div>
+          <div class="skill-item"><i class="fas fa-laptop-code"></i> Front-End Developer</div>
+          <div class="skill-item"><i class="fas fa-server"></i> Back-End Developer</div>
+          <div class="skill-item"><i class="devicon-wordpress-plain"></i></i> Wordpress</div>
+          <div class="skill-item"><i class="fas fa-cubes"></i> Laragon</div>
+          <div class="skill-item"><i class="devicon-blender-original"></i> Blender</div>
+          <div class="skill-item"><i class="devicon-github-original"></i></i></i> Github</div>
         </div>
       </div>
     </section>
