@@ -235,32 +235,4 @@ document.addEventListener("DOMContentLoaded", () => {
       window.addEventListener("scroll", scrollSpy);
       scrollSpy(); // Initial check on load
   }
-
-  // ===========================
-  // Contact Form Submission
-  // ===========================
-  const contactForm = document.getElementById("contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const messageEl = document.querySelector(".form-message");
-
-      if (messageEl) {
-          messageEl.textContent = "Mengirim pesan...";
-          messageEl.classList.remove('success', 'error');
-
-          // Simulate form submission
-          setTimeout(() => {  
-            messageEl.textContent = "Pesan Anda berhasil terkirim!";
-            messageEl.classList.add('success');
-            contactForm.reset();
-
-            setTimeout(() => {
-              messageEl.textContent = "";
-              messageEl.classList.remove('success');
-            }, 4000);
-          }, 1500);
-      }
-    });
-  }
 });
