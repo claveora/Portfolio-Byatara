@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Byatara | Creative Developer</title>
+  <link rel="icon" type="image/jpeg" href="main.jpg"/>
 
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link 
@@ -23,35 +23,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="spinner"></div>
   </div>
 
-  <!-- Header -->
   <header class="site-header">
     <div class="container">
-      <div class="logo">Byatara</div>
+      <a href="#hero" class="logo">Byatara</a>
 
-      <!-- Hamburger -->
-      <i class="fa-solid fa-bars hamburger" id="hamburger"></i>
-
-<!-- Dropdown Nav -->
-    <div class="dropdown" id="dropdown">
-      <ul>
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#projects">Proyek</a></li>
-        <li><a href="#pendidikan">Pendidikan</a></li>
-        <li><a href="#skills">Skill</a></li>
-        <li><a href="#contact">Kontak</a></li>
-        <i class="fa-solid fa-xmark cancel" id="cancel"></i>
-      </ul>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#projects">Proyek</a></li>
+          <li><a href="#pendidikan">Pendidikan</a></li>
+          <li><a href="#skills">Skill</a></li>
+          <li><a href="#organization">Organisasi</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+      
+      <button class="hamburger" id="hamburger" aria-label="Buka menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-
   </header>
 
   <main>
-    <!-- Hero -->
     <section id="hero">
       <div class="hero-bg-parallax"></div>
       <div class="container hero-content">
@@ -64,7 +63,6 @@
       </div>
     </section>
 
-    <!-- About -->
     <section id="about" class="content-section">
       <div class="container reveal">
         <h2 class="section-title">Tentang Saya</h2>
@@ -74,7 +72,6 @@
       </div>
     </section>
 
-    <!-- Projects -->
     <section id="projects" class="content-section">
       <div class="container reveal">
         <h2 class="section-title">Proyek</h2>
@@ -130,7 +127,6 @@
       </div>
     </section>
 
-    <!-- Education -->
     <section id="pendidikan" class="content-section">
       <div class="container reveal">
         <h2 class="section-title">Riwayat Pendidikan</h2>
@@ -145,40 +141,39 @@
           <div class="timeline-item">
             <div class="timeline-content">
               <h3 class="school-name">SMP Negeri 2 Surakarta</h3>
-              <p>Di sini saya mulai mengasah pengetahuan, keterampilan, dan mengikuti berbagai kegiatan akademik maupun non-akademik.</p>
+              <p>Di sini saya mulai mengasah jiwa akademik maupun non-akademik.</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-content">
               <h3 class="school-name">SMK Negeri 6 Surakarta</h3>
-              <p>Jurusan Rekayasa Perangkat Lunak, di mana saya mendalami dunia teknologi, pemrograman, dan pengembangan web modern.</p>
+              <p>Jurusan Rekayasa Perangkat Lunak, pemrograman, dan pengembangan web modern.</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-content">
               <h3 class="school-name">Universitas Gadjah Mada</h3>
-              <p>Program Ilmu Komputer Ya Allah AAMMIIN paling pollllllll dan kencengg</p>
+              <p>Program Ilmu Komputer Ya Allah AAMMIIN semoga terkabulkan aamiin</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills" class="content-section">
       <div class="container reveal">
         <h2 class="section-title">Skill Saya</h2>
         <div class="skills-list">
-          <div class="skill-item"><i class="devicon-visualstudio-plain"></i></i> Visual Studio Code</div>
+          <div class="skill-item"><i class="devicon-visualstudio-plain"></i> Visual Studio Code</div>
           <div class="skill-item"><i class="fab fa-html5"></i> HTML</div>
           <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS</div>
           <div class="skill-item"><i class="fab fa-js-square"></i> JavaScript</div>
           <div class="skill-item"><i class="fab fa-java"></i> Java</div>
           <div class="skill-item"><i class="fab fa-python"></i> Python</div>
           <div class="skill-item"><i class="fas fa-palette"></i> UI/UX Design</div>
-          <div class="skill-item"><i class="devicon-canva-original"></i></i> Canva</div>
+          <div class="skill-item"><i class="devicon-canva-original"></i> Canva</div>
           <div class="skill-item"><i class="fab fa-figma"></i> Figma</div>
           <div class="skill-item"><i class="devicon-cplusplus-plain colored"></i> C++</div>
           <div class="skill-item"><i class="devicon-php-plain colored"></i> PHP</div>
@@ -187,15 +182,65 @@
           <div class="skill-item"><i class="devicon-androidstudio-plain colored"></i> Android Studio</div>
           <div class="skill-item"><i class="fas fa-laptop-code"></i> Front-End Developer</div>
           <div class="skill-item"><i class="fas fa-server"></i> Back-End Developer</div>
-          <div class="skill-item"><i class="devicon-wordpress-plain"></i></i> Wordpress</div>
+          <div class="skill-item"><i class="devicon-wordpress-plain"></i> Wordpress</div>
           <div class="skill-item"><i class="fas fa-cubes"></i> Laragon</div>
           <div class="skill-item"><i class="devicon-blender-original"></i> Blender</div>
-          <div class="skill-item"><i class="devicon-github-original"></i></i></i> Github</div>
+          <div class="skill-item"><i class="devicon-github-original"></i> Github</div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <section id="organization" class="content-section">
+      <div class="container reveal">
+        <h2 class="section-title">Aktivitas Organisasi</h2>
+        <div class="organization-grid">
+
+          <div class="org-card">
+            <div class="org-card-inner">
+              <div class="org-card-front" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgb(64, 38, 5)), url('https://source.unsplash.com/random/500x700?scout,campfire');">
+                <i class="fas fa-campground org-icon"></i>
+                <h3 class="org-title">DG Praduska</h3>
+                <p class="org-role">Anggota</p>
+              </div>
+              <div class="org-card-back">
+                <h4>Tugas & Tanggung Jawab</h4>
+                <p>Bertanggung jawab dalam merencanakan dan melaksanakan kegiatan kepramukaan, serta menjaga tradisi dan nilai-nilai kepramukaan semasa SMP Negeri 2 Surakarta.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <div class="org-card-inner">
+              <div class="org-card-front" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(131, 18, 18, 0.5)), url('https://source.unsplash.com/random/500x700?school,meeting');">
+                <i class="fas fa-users-cog org-icon"></i>
+                <h3 class="org-title">OSIS</h3>
+                <p class="org-role">Koordinator A'24</p>
+              </div>
+              <div class="org-card-back">
+                <h4>Tugas & Tanggung Jawab</h4>
+                <p>Mengkoordinasikan dan sebagai pengganti jabatan Ketua OSIS selama masa PKL, menjembatani komunikasi antar angkatan, serta memimpin rapat dan acara khusus.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <div class="org-card-inner">
+              <div class="org-card-front" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(124, 155, 31, 0.5)), url('https://source.unsplash.com/random/500x700?community,media');">
+                <i class="fas fa-bullhorn org-icon"></i>
+                <h3 class="org-title">KMVI</h3>
+                <p class="org-role">Humas</p>
+              </div>
+              <div class="org-card-back">
+                <h4>Tugas & Tanggung Jawab</h4>
+                <p>Menjadi penghubung antara organisasi dengan pihak eksternal, mengelola media sosial dan membangun citra positif KMVI di mata publik.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="content-section">
       <div class="container reveal">
         <h2 class="section-title">Hubungi Saya</h2>
@@ -204,31 +249,29 @@
           <input type="email" name="email" placeholder="Email Anda" required />
           <textarea name="message" placeholder="Pesan Anda" rows="5" required></textarea>
           <button type="submit" class="cta-button">Kirim Pesan</button>
-          <div class="form-message"></div>
+          <p class="form-message"></p>
         </form>
 
         <div class="social-icons">
-          <a href="https://github.com/claveora"><i class="fab fa-github"></i></a>
-          <a href="https://api.whatsapp.com/send/?phone=62895421349669&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.instagram.com/b__ytra?igsh=N2YxaDB1MTJic3Yz"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/claveora" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+          <a href="https://api.whatsapp.com/send/?phone=62895421349669&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/b__ytra?igsh=N2YxaDB1MTJic3Yz" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <p>&copy; 2025 Byatara</p>
       <div class="theme-switcher">
-        <label for="dark-mode-toggle">Dark Mode</label>
+        <span>Dark Mode</span>
         <input type="checkbox" id="dark-mode-toggle" class="toggle-input" />
         <label for="dark-mode-toggle" class="toggle-label"></label>
       </div>
     </div>
   </footer>
 
-  <!-- Modal -->
   <div id="project-modal" class="modal">
     <div class="modal-content">
       <span class="close-modal">&times;</span>
@@ -236,19 +279,13 @@
 
       <div class="modal-header">
         <h3 id="modal-title"></h3>
-        <button class="btn-jln">Jalankan</button>
+        <a href="#" id="modal-link" class="btn-jln" target="_blank" rel="noopener noreferrer">Jalankan</a>
       </div>
 
       <p id="modal-description"></p>
     </div>
   </div>
 
-  <!-- Scroll To Top -->
-  <button id="scroll-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Script -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
