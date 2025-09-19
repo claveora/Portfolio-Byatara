@@ -1,169 +1,266 @@
-// ===========================
-// Loading Screen
-// ===========================
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  // ===========================
+  // Loading Screen & Opening Animation
+  // ===========================
   const loadingScreen = document.getElementById("loading-screen");
-  setTimeout(() => {
-    loadingScreen.style.opacity = "0";
-    setTimeout(() => (loadingScreen.style.display = "none"), 500);
-  }, 500);
-});
-
-// ===========================
-// Reveal on Scroll
-// ===========================
-function revealOnScroll() {
-  document.querySelectorAll(".reveal").forEach(el => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 50) el.classList.add("visible");
-  });
-}
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
-
-// ===========================
-// Hamburger Menu
-// ===========================
-const hamburgerIcon = document.getElementById("hamburger");
-const dropdown = document.getElementById("dropdown");
-const cancelIcon = document.getElementById("cancel");
-
-hamburgerIcon.addEventListener("click", () => {
-  dropdown.style.transform = "translateY(0)";
-});
-
-cancelIcon.addEventListener("click", () => {
-  dropdown.style.transform = "translateY(-500px)";
-});
-
-
-// ===========================
-// Scroll To Top
-// ===========================
-const scrollBtn = document.getElementById("scroll-to-top");
-window.addEventListener("scroll", () => {
-  scrollBtn.style.display = window.scrollY > 300 ? "flex" : "none";
-});
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-// ===========================
-// Typing Effect
-// ===========================
-const typingElement = document.querySelector(".typing-effect");
-const typingWords = ["In Progress", "and Designer", "and Programmer"];
-let wordIndex = 0, charIndex = 0, isDeleting = false;
-
-function typeEffect() {
-  if (!typingElement) return;
-
-  const currentWord = typingWords[wordIndex];
-  const currentText = currentWord.substring(0, charIndex);
-
-  typingElement.textContent = currentText;
-
-  if (!isDeleting && charIndex < currentWord.length) {
-    charIndex++;
-    setTimeout(typeEffect, 100);
-  } else if (isDeleting && charIndex > 0) {
-    charIndex--;
-    setTimeout(typeEffect, 70);
-  } else {
-    if (!isDeleting) {
-      isDeleting = true;
-      setTimeout(typeEffect, 1000);
-    } else {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % typingWords.length;
-      setTimeout(typeEffect, 300);
-    }
+  if (loadingScreen) {
+    setTimeout(() => {
+      loadingScreen.style.opacity = "0";
+      // PENAMBAHAN: Menambahkan class 'loaded' untuk memicu animasi pembuka
+      document.body.classList.add('loaded'); 
+      setTimeout(() => (loadingScreen.style.display = "none"), 500);
+    }, 500);
   }
-}
-window.addEventListener("load", typeEffect);
 
-// ===========================
-// Modal Project
-// ===========================
-const modal = document.getElementById("project-modal");
-const modalImg = document.getElementById("modal-img");
-const modalTitle = document.getElementById("modal-title");
-const modalDesc = document.getElementById("modal-description");
-const modalClose = document.querySelector(".close-modal");
-const modalBtn = document.querySelector(".modal-header .btn-jln");
-let currentProjectLink = "#";
+  // ===========================
+  // Responsive Navigation (Hamburger)
+  // ===========================
+  const hamburger = document.getElementById("hamburger");
+  const mainNav = document.getElementById("main-nav");
+  if (hamburger && mainNav) {
+    const navLinks = mainNav.querySelectorAll("a");
+    hamburger.addEventListener("click", () => {
+      mainNav.classList.toggle("active");
+      hamburger.classList.toggle("active");
+      document.body.classList.toggle("nav-open");
+    });
 
-document.querySelectorAll(".project-card").forEach(card => {
-  // Klik card → buka modal
-  card.addEventListener("click", e => {
-    if (e.target.classList.contains("btn-jln")) return; // kalau tombol jalankan diklik, jangan buka modal
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("active");
+        hamburger.classList.remove("active");
+        document.body.classList.remove("nav-open");
+      });
+    });
+  }
 
-    modal.style.display = "block";
-    modalTitle.textContent = card.dataset.title;
-    modalDesc.textContent = card.dataset.description;
-    modalImg.src = card.dataset.image;
-    currentProjectLink = card.dataset.link;
+  // ===========================
+  // Typing Effect
+  // ===========================
+  const typingElement = document.querySelector(".typing-effect");
+  if (typingElement) {
+    const typingWords = ["In Progress", "and a Designer", "and a Programmer"];
+    let wordIndex = 0,
+      charIndex = 0,
+      isDeleting = false;
+
+    function typeEffect() {
+      const currentWord = typingWords[wordIndex];
+      let displayText = currentWord.substring(0, charIndex);
+      typingElement.textContent = displayText;
+
+      if (!isDeleting && charIndex < currentWord.length) {
+        charIndex++;
+        setTimeout(typeEffect, 120);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeEffect, 80);
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) {
+          wordIndex = (wordIndex + 1) % typingWords.length;
+        }
+        setTimeout(typeEffect, isDeleting ? 1200 : 500);
+      }
+    }
+    typeEffect();
+  }
+
+  // ===========================
+  // Hero Parallax Effect
+  // ===========================
+  const heroBg = document.querySelector('.hero-bg-parallax');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const scrollValue = window.scrollY;
+      heroBg.style.transform = `translateY(${scrollValue * 0.4}px)`;
+    });
+  }
+
+  // ===========================
+  // Project Card 3D Tilt Effect
+  // ===========================
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotateX = (y / rect.height) * -10; // -10 to 10 degrees
+      const rotateY = (x / rect.width) * 10;   // -10 to 10 degrees
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    });
   });
 
-  // Klik tombol "Jalankan" → langsung buka link proyek
-  const runBtn = card.querySelector(".btn-jln");
-  if (runBtn) {
-    runBtn.addEventListener("click", e => {
-      e.stopPropagation(); // biar nggak ikut buka modal
-      const link = card.dataset.link;
-      if (link) window.open(link, "_blank");
+  // ===========================
+  // Reveal on Scroll
+  // ===========================
+  const revealElements = document.querySelectorAll(".reveal");
+  if (revealElements.length > 0) {
+      function revealOnScroll() {
+        const windowHeight = window.innerHeight;
+        revealElements.forEach(el => {
+          const elementTop = el.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 70) {
+            el.classList.add("visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll(); // Initial check
+  }
+
+  // ===========================
+  // Scroll To Top Button
+  // ===========================
+  const scrollBtn = document.getElementById("scroll-to-top");
+  if (scrollBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // ===========================
+  // Project Modal
+  // ===========================
+  const modal = document.getElementById("project-modal");
+  if (modal) {
+    const modalImg = document.getElementById("modal-img");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-description");
+    const modalLink = document.getElementById("modal-link");
+    const modalClose = document.querySelector(".close-modal");
+
+    document.querySelectorAll(".project-card").forEach(card => {
+      card.addEventListener("click", e => {
+        // Cek jika yang diklik adalah tombol di dalam card
+        if (e.target.closest(".btn-jln")) {
+            const link = card.dataset.link;
+            if (link) window.open(link, "_blank");
+            return; // Hentikan eksekusi agar modal tidak muncul
+        }
+
+        modal.style.display = "block";
+        modalTitle.textContent = card.dataset.title;
+        modalDesc.textContent = card.dataset.description;
+        modalImg.src = card.dataset.image;
+        modalLink.href = card.dataset.link;
+        
+        document.body.classList.add("modal-open");
+      });
+    });
+
+    const closeModal = () => {
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+    };
+    
+    modalClose.addEventListener("click", closeModal);
+    window.addEventListener("click", e => {
+      if (e.target === modal) closeModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  // ===========================
+  // Dark Mode Toggle
+  // ===========================
+  const darkToggle = document.getElementById("dark-mode-toggle");
+  if (darkToggle) {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const setDarkMode = (isDark) => {
+      document.body.classList.toggle("dark-mode", isDark);
+      darkToggle.checked = isDark;
+      localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
+    };
+
+    const currentMode = localStorage.getItem("darkMode");
+    if (currentMode) {
+      setDarkMode(currentMode === "enabled");
+    } else {
+      setDarkMode(prefersDark.matches);
+    }
+
+    darkToggle.addEventListener("change", () => {
+      setDarkMode(darkToggle.checked);
+    });
+
+    prefersDark.addEventListener("change", (e) => {
+      if (!localStorage.getItem("darkMode")) {
+        setDarkMode(e.matches);
+      }
+    });
+  }
+
+  // ===========================
+  // Navigation Active on Scroll (Scrollspy)
+  // ===========================
+  const sections = document.querySelectorAll("section[id]");
+  if (sections.length > 0 && document.querySelector(".main-nav")) {
+      function scrollSpy() {
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(current => {
+          const sectionHeight = current.offsetHeight;
+          const sectionTop = current.offsetTop - 80; // Header height offset
+          let sectionId = current.getAttribute("id");
+          const link = document.querySelector(".main-nav a[href*=" + sectionId + "]");
+
+          if (link) { 
+              if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                link.classList.add("active");
+              } else {
+                link.classList.remove("active");
+              }
+          }
+        });
+      }
+      window.addEventListener("scroll", scrollSpy);
+      scrollSpy(); // Initial check on load
+  }
+
+  // ===========================
+  // Contact Form Submission
+  // ===========================
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const messageEl = document.querySelector(".form-message");
+
+      if (messageEl) {
+          messageEl.textContent = "Mengirim pesan...";
+          messageEl.classList.remove('success', 'error');
+
+          // Simulate form submission
+          setTimeout(() => {  
+            messageEl.textContent = "Pesan Anda berhasil terkirim!";
+            messageEl.classList.add('success');
+            contactForm.reset();
+
+            setTimeout(() => {
+              messageEl.textContent = "";
+              messageEl.classList.remove('success');
+            }, 4000);
+          }, 1500);
+      }
     });
   }
 });
-
-// Tombol Jalankan dalam modal
-modalBtn.addEventListener("click", () => {
-  if (currentProjectLink) window.open(currentProjectLink, "_blank");
-});
-
-// Tutup modal
-modalClose.addEventListener("click", () => (modal.style.display = "none"));
-window.addEventListener("click", e => {
-  if (e.target === modal) modal.style.display = "none";
-});
-
-// ===========================
-// Dark Mode Toggle
-// ===========================
-const darkToggle = document.getElementById("dark-mode-toggle");
-if (localStorage.getItem("darkMode") === "enabled") {
-  document.body.classList.add("dark-mode");
-  darkToggle.checked = true;
-}
-darkToggle.addEventListener("change", () => {
-  if (darkToggle.checked) {
-    document.body.classList.add("dark-mode");
-    localStorage.setItem("darkMode", "enabled");
-  } else {
-    document.body.classList.remove("dark-mode");
-    localStorage.setItem("darkMode", "disabled");
-  }
-});
-
-// ===========================
-// Navigation Scrollspy
-// ===========================
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".main-nav a");
-
-function scrollSpy() {
-  let current = "";
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 80;
-    if (scrollY >= sectionTop) current = section.id;
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-}
-window.addEventListener("scroll", scrollSpy);
