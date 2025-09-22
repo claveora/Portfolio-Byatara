@@ -1,5 +1,5 @@
 /* ===========================
-   Root Variables
+    Root Variables
 =========================== */
 :root {
   --primary-color: #007BFF;      /* Electric Blue */
@@ -26,7 +26,7 @@ body.dark-mode {
 }
 
 /* ===========================
-   Reset & Global
+    Reset & Global
 =========================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -50,7 +50,7 @@ a {
 }
 
 /* ===========================
-   Loading Screen
+    Loading Screen
 =========================== */
 #loading-screen {
   position: fixed;
@@ -73,7 +73,7 @@ a {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===========================
-   Header
+    Header
 =========================== */
 .site-header {
   position: fixed;
@@ -86,11 +86,9 @@ a {
   padding: 1rem 0;
   border-bottom: 1px solid var(--card-bg-color);
   transition: background-color 0.3s, opacity 0.8s ease-out, transform 0.8s ease-out;
-  /* PENAMBAHAN: Kondisi awal untuk animasi pembuka */
   opacity: 0;
   transform: translateY(-30px);
 }
-/* PENAMBAHAN: Kondisi akhir untuk animasi pembuka */
 body.loaded .site-header {
   opacity: 1;
   transform: translateY(0);
@@ -113,8 +111,8 @@ body.loaded .site-header {
 .main-nav a {
   font-weight: 600;
   transition: color 0.3s;
-  position: relative;
-  padding-bottom: 0.25rem;
+  position: constarins;
+  padding-bottom: 25rem;
 }
 .main-nav a:hover { color: var(--primary-color); }
 .main-nav a.active {
@@ -127,7 +125,7 @@ body.loaded .site-header {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1002; /* Needs to be on top of the menu */
+  z-index: 1002;
   flex-direction: column;
   gap: 6px;
   padding: 5px;
@@ -142,7 +140,7 @@ body.loaded .site-header {
 }
 
 /* ===========================
-   Hero
+    Hero
 =========================== */
 #hero {
   position: relative;
@@ -153,13 +151,11 @@ body.loaded .site-header {
   text-align: center;
   overflow: hidden;
 }
-/* PENAMBAHAN: Wrapper untuk konten hero agar mudah dianimasikan */
 .hero-content {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s; /* Tambah delay */
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
 }
-/* PENAMBAHAN: Kondisi akhir untuk animasi pembuka */
 body.loaded .hero-content {
   opacity: 1;
   transform: translateY(0);
@@ -192,7 +188,7 @@ body.loaded .hero-content {
 .hero-school { margin-top: 0.5rem; opacity: 0.7; }
 
 /* ===========================
-   General Section
+    General Section
 =========================== */
 .content-section { padding: 6rem 0; }
 .section-title {
@@ -209,7 +205,7 @@ body.loaded .hero-content {
 }
 
 /* ===========================
-   Projects
+    Projects
 =========================== */
 .project-grid {
   display: grid;
@@ -237,21 +233,21 @@ body.loaded .hero-content {
   padding: 1.5rem;
   font-weight: 600;
   font-size: 1.2rem;
-  display: flex;                 
-  align-items: center;            
-  justify-content: space-between; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .project-info h3 {
-  margin: 0;                     
+  margin: 0;
 }
 .project-info .btn-jln {
-  margin-top: 0;                  
-  padding: 0.4rem 1rem;          
+  margin-top: 0;
+  padding: 0.4rem 1rem;
   font-size: 0.9rem;
 }
 
 /* ===========================
-   Education Timeline
+    Education Timeline
 =========================== */
 .timeline {
   position: relative;
@@ -297,19 +293,19 @@ body.loaded .hero-content {
   border: 3px solid var(--background-color);
   z-index: 1;
 }
-.timeline-item:nth-child(odd) { 
-  left: 0; 
+.timeline-item:nth-child(odd) {
+  left: 0;
   padding-left: 0;
 }
-.timeline-item:nth-child(odd)::before { 
-  right: -10px; 
+.timeline-item:nth-child(odd)::before {
+  right: -10px;
 }
-.timeline-item:nth-child(even) { 
-  left: 50%; 
+.timeline-item:nth-child(even) {
+  left: 50%;
   padding-right: 0;
 }
-.timeline-item:nth-child(even)::before { 
-  left: -10px; 
+.timeline-item:nth-child(even)::before {
+  left: -10px;
 }
 .school-name {
   font-size: 1.5rem;
@@ -319,7 +315,7 @@ body.loaded .hero-content {
 }
 
 /* ===========================
-   Skills
+    Skills
 =========================== */
 .skills-list {
   display: flex;
@@ -345,15 +341,14 @@ body.loaded .hero-content {
 .skill-item:hover i { color: white; }
 
 /* ===========================
-   Organization Section
+    Organization Section
 =========================== */
 .organization-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
-  perspective: 1000px; /* Diperlukan untuk efek 3D flip */
+  perspective: 1000px;
 }
-
 .org-card {
   background-color: transparent;
   width: 100%;
@@ -361,7 +356,6 @@ body.loaded .hero-content {
   border-radius: 15px;
   cursor: pointer;
 }
-
 .org-card-inner {
   position: relative;
   width: 100%;
@@ -371,16 +365,14 @@ body.loaded .hero-content {
   box-shadow: 0 10px 30px var(--shadow-color);
   border-radius: 15px;
 }
-
 .org-card:hover .org-card-inner {
   transform: rotateY(180deg);
 }
-
 .org-card-front, .org-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 15px;
   display: flex;
@@ -390,13 +382,11 @@ body.loaded .hero-content {
   padding: 2rem;
   text-align: center;
 }
-
 .org-card-front {
   background-size: cover;
   background-position: center;
-  color: white; /* PERBAIKAN: Warna putih dipertahankan karena overlay di HTML sudah menjamin kontras */
+  color: white;
 }
-
 .org-card-front::before {
   content: '';
   position: absolute;
@@ -406,24 +396,20 @@ body.loaded .hero-content {
   transform: scale(0.9);
   transition: all 0.4s;
 }
-
 .org-card:hover .org-card-front::before {
   transform: scale(1);
   opacity: 0;
 }
-
 .org-icon {
   font-size: 3rem;
   color: var(--secondary-color);
   margin-bottom: 1rem;
 }
-
 .org-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-
 .org-role {
   font-size: 1.1rem;
   font-weight: 600;
@@ -431,26 +417,23 @@ body.loaded .hero-content {
   padding: 0.3rem 1rem;
   border-radius: 50px;
 }
-
 .org-card-back {
   background-color: var(--card-bg-color);
   color: var(--text-color);
   transform: rotateY(180deg);
 }
-
 .org-card-back h4 {
   font-size: 1.5rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
 }
-
 .org-card-back p {
   line-height: 1.7;
   font-size: 0.95rem;
 }
 
 /* ===========================
-   Contact
+    Contact
 =========================== */
 .contact-form {
   max-width: 700px;
@@ -516,7 +499,7 @@ body.loaded .hero-content {
 }
 
 /* ===========================
-   Footer
+    Footer
 =========================== */
 .site-footer {
   padding: 2rem 0;
@@ -560,7 +543,7 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
 .toggle-input:checked + .toggle-label::after { transform: translateX(24px); }
 
 /* ===========================
-   Modal
+    Modal
 =========================== */
 .modal {
   display: none;
@@ -626,7 +609,7 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
 }
 
 /* ===========================
-   Scroll To Top
+    Scroll To Top
 =========================== */
 #scroll-to-top {
   position: fixed;
@@ -640,7 +623,7 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
-  display: flex; /* PERBAIKAN: Mengganti none ke flex agar align/justify center berfungsi */
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
@@ -657,7 +640,7 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
 }
 
 /* ===========================
-   Animations
+    Animations
 =========================== */
 .reveal {
   opacity: 0;
@@ -674,7 +657,7 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
 }
 
 /* ===========================
-   Responsive (Mobile & Tablet)
+    Responsive (Mobile & Tablet)
 =========================== */
 @media (max-width: 768px) {
   .main-nav {
@@ -682,17 +665,14 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    
+    height: 100vh;
     background: rgba(var(--rgb-bg), 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
     padding-top: 8rem;
-    
     z-index: 1001;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
@@ -745,17 +725,39 @@ body.dark-mode .toggle-label { background-color: var(--primary-color); }
     transform: translateY(-9px) rotate(-45deg);
   }
 
-  /* Penyesuaian lain untuk mobile */
-  .timeline::before { left: 10px; }
-  .timeline-item {
+  /* [PEROMBAKAN TOTAL] TIMELINE MOBILE - Pendekatan Lebih Modern dan Stabil */
+  
+  .timeline::before {
+    display: none;
+  }
+  
+  .timeline {
+    padding: 2rem 0;
+  }
+  
+  .timeline-item,
+  .timeline-item:nth-child(even) {
     width: 100%;
-    left: 0 !important;
-    padding: 0;
-    padding-left: 2.5rem;
+    left: 0;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 30px;
+    padding-right: 0;
   }
-  .timeline-item::before { 
-    left: 0; 
+  
+  /* [DIHAPUS] Menghapus rule yang membuat border terakhir transparan */
+  /* .timeline-item:last-child {
+    border-left-color: transparent;
+  } */
+  
+  .timeline-item::before,
+  .timeline-item:nth-child(odd)::before,
+  .timeline-item:nth-child(even)::before {
+    left: -12px;
+    top: 0.5em;
+    right: auto;
   }
+
   .site-footer .container {
     flex-direction: column;
     text-align: center;
